@@ -1,0 +1,17 @@
+blockquote {
+  padding: 12px 20px;
+  line-height: 24px;
+  background-color: #FBF9FD;
+  border-left: 4px solid #409EFF;
+  display: block;
+}
+
+blockquote p {
+  padding: 0;
+  font-size: 16px;
+  color: rgb(89, 89, 89);
+}
+
+p code, li code {
+  color: #409EFF;
+}
