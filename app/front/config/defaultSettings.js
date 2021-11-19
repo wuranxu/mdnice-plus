@@ -1,8 +1,8 @@
 const Settings = {
-  navTheme: 'light',
+  navTheme: 'realDark',
   // 拂晓蓝
-  primaryColor: '#1890ff',
-  layout: 'mix',
+  primaryColor: '#722ED1',
+  layout: 'top',
   contentWidth: 'Fluid',
   fixedHeader: false,
   fixSiderbar: true,

@@ -43,7 +43,6 @@ export default `.markdown-body {
   margin-top: 1em;
   margin-bottom: 10px;
   text-align:center;
-  display: inline-block;
   height: 38px;
   line-height: 42px;
   color: #48b378;
