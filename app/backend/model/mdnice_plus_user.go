@@ -2,16 +2,16 @@ package model
 
 import (
 	"mdnice-plus/config"
-	"mdnice-plus/helper/time"
+	"mdnice-plus/helper/jtime"
 	t "time"
 )
 
 type MdNicePlusUser struct {
 	Model
-	Username    string        `gorm:"name:username;unique;not null" json:"username" validate:"required"`
-	Password    string        `gorm:"name:password;type:varchar(24);not null" json:"password" validate:"required"`
-	LastLoginAt time.JSONTime `gorm:"name:last_login_at;type:timestamp" json:"last_login_at"`
-	Type        int           `gorm:"name:type;type:smallint;not null;default 0;" json:"type"`
+	Username    string         `gorm:"name:username;unique;not null" json:"username" validate:"required"`
+	Password    string         `gorm:"name:password;type:varchar(24);not null" json:"password,omitempty" validate:"required"`
+	LastLoginAt jtime.JSONTime `gorm:"name:last_login_at;type:timestamp" json:"last_login_at"`
+	Type        int            `gorm:"name:type;type:smallint;not null;default 0;" json:"type"`
 }
 
 func (*MdNicePlusUser) TableName() string {
@@ -22,7 +22,7 @@ func NewUser(username, password string) *MdNicePlusUser {
 	return &MdNicePlusUser{
 		Username:    username,
 		Password:    password,
-		LastLoginAt: time.JSONTime{Time: t.Now()},
+		LastLoginAt: jtime.JSONTime{Time: t.Now()},
 		Type:        0,
 	}
 }

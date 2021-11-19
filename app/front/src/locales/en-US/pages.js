@@ -45,7 +45,7 @@ export default {
   'pages.searchTable.updateForm.ruleProps.typeLabel': 'Rule Type',
   'pages.searchTable.updateForm.schedulingPeriod.title': 'Set Scheduling Period',
   'pages.searchTable.updateForm.schedulingPeriod.timeLabel': 'Starting Time',
-  'pages.searchTable.updateForm.schedulingPeriod.timeRules': 'Please choose a start time!',
+  'pages.searchTable.updateForm.schedulingPeriod.timeRules': 'Please choose a start jtime!',
   'pages.searchTable.titleDesc': 'Description',
   'pages.searchTable.ruleName': 'Rule name is required',
   'pages.searchTable.titleCallNo': 'Number of Service Calls',

@@ -8,9 +8,17 @@ import (
 
 const (
 	CheckParamsErrorCode = 40000 + iota
+	TokenCheckFailedCode
+	TokenNotFoundCode
 )
 
-var CheckParamsError = exception.ErrString("get json params error")
+var (
+	CheckParamsError = exception.ErrString("get json params error")
+)
+
+func GetUserId(context *gin.Context) uint {
+	return context.GetUint("userId")
+}
 
 func CheckParams(ctx *gin.Context, v interface{}) error {
 	if err := ctx.ShouldBindJSON(v); err != nil {

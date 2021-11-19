@@ -18,8 +18,8 @@ export const initialStateConfig = {
 export async function getInitialState() {
   const fetchUserInfo = async () => {
     try {
-      const msg = await queryCurrentUser();
-      return msg.data;
+      // const msg = await queryCurrentUser();
+      return JSON.parse(localStorage.getItem("mdnice-plus-user"));
     } catch (error) {
       history.push(loginPath);
     }

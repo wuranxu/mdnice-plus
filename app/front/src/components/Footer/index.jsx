@@ -5,7 +5,7 @@ export default () => {
   const intl = useIntl();
   const defaultMessage = intl.formatMessage({
     id: 'app.copyright.produced',
-    defaultMessage: '蚂蚁集团体验技术部出品',
+    defaultMessage: 'Woody出品',
   });
   const currentYear = new Date().getFullYear();
   return (
@@ -13,8 +13,8 @@ export default () => {
       copyright={`${currentYear} ${defaultMessage}`}
       links={[
         {
-          key: 'Ant Design Pro',
-          title: 'Ant Design Pro',
+          key: 'Mdnice-Plus',
+          title: 'Mdnice-Plus',
           href: 'https://pro.ant.design',
           blankTarget: true,
         },
@@ -25,8 +25,8 @@ export default () => {
           blankTarget: true,
         },
         {
-          key: 'Ant Design',
-          title: 'Ant Design',
+          key: 'Mdnice-Plus',
+          title: 'Mdnice-Plus',
           href: 'https://ant.design',
           blankTarget: true,
         },

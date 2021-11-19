@@ -1,4 +1,4 @@
-package time
+package jtime
 
 import (
 	"database/sql/driver"
@@ -12,6 +12,10 @@ const FORMAT = "2006-01-02 15:04:05"
 // JSONTime json时间
 type JSONTime struct {
 	time.Time
+}
+
+func Now() JSONTime {
+	return JSONTime{Time: time.Now()}
 }
 
 // MarshalJSON on JSONTime format Time field with %Y-%m-%d %H:%M:%S
@@ -29,7 +33,7 @@ func (t JSONTime) Value() (driver.Value, error) {
 	return t.Time, nil
 }
 
-// Scan valueof time.Time
+// Scan valueof jtime.Time
 func (t *JSONTime) Scan(v interface{}) error {
 	value, ok := v.(time.Time)
 	if ok {

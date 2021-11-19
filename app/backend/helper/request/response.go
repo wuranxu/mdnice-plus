@@ -7,6 +7,18 @@ const (
 	SuccessMessage = "operate success"
 )
 
+type MResp struct {
+	ErrorCode int
+	Error     error
+}
+
+func NewResp(code int, err error) *MResp {
+	return &MResp{
+		ErrorCode: code,
+		Error:     err,
+	}
+}
+
 func getErrorData(msg ...error) (ans interface{}) {
 	if msg[0] == nil {
 		ans = nil

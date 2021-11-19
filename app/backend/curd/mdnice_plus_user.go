@@ -15,3 +15,7 @@ func InsertUser(username, password string) (*model.MdNicePlusUser, error) {
 	}
 	return user, nil
 }
+
+func UpdateUser(u *model.MdNicePlusUser) error {
+	return u.UpdateUser()
+}

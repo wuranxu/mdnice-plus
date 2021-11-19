@@ -33,7 +33,7 @@ const GlobalHeaderRight = () => {
           },
           {
             label: <a href="next.ant.design">Ant Design</a>,
-            value: 'Ant Design',
+            value: 'Mdnice-Plus',
           },
           {
             label: <a href="https://protable.ant.design/">Pro Table</a>,

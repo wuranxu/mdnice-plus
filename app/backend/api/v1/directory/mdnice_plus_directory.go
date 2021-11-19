@@ -1,8 +1,8 @@
-package user
+package directory
 
 import (
 	"github.com/gin-gonic/gin"
-	"mdnice-plus/service/user"
+	"mdnice-plus/service/directory"
 )
 
 type Router struct {
@@ -14,7 +14,7 @@ func NewRouter(engine *gin.Engine) *Router {
 }
 
 func (r *Router) AddRoute() {
-	v1 := r.app.Group("/v1").Group("user")
-	v1.POST("/register", user.Register)
-	v1.POST("/login", user.Login)
+	v1 := r.app.Group("/v1").Group("directory")
+	v1.POST("/create", directory.CreateDirectory)
+	v1.POST("/update", directory.UpdateDirectory)
 }

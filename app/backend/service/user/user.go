@@ -4,21 +4,30 @@ import (
 	"errors"
 	"github.com/gin-gonic/gin"
 	"mdnice-plus/curd"
+	"mdnice-plus/helper/jtime"
+	"mdnice-plus/helper/jwt"
 	"mdnice-plus/helper/request"
 	"mdnice-plus/model"
 )
 
 const (
 	ExistsErrorCode = 10000 + iota
+	PasswordErrorCode
+	ForbiddenErrorCode
+	GenerateTokenErrorCode
 	RegisterUserErrorCode
 )
 
 var (
-	ExistsError       = errors.New("user exists")
-	RegisterUserError = errors.New("register user failed")
+	ExistsError        = errors.New("user exists")
+	PasswordError      = errors.New("valid username or password")
+	ForbiddenError     = errors.New("user is forbidden")
+	GenerateTokenError = errors.New("generate token failed")
+	RegisterUserError  = errors.New("register user failed")
 )
 
-func RegisterUser(context *gin.Context) {
+// Register register user
+func Register(context *gin.Context) {
 	data := new(model.MdNicePlusUser)
 	if err := request.CheckParams(context, data); err != nil {
 		request.Failed(context, request.CheckParamsErrorCode, err)
@@ -35,4 +44,30 @@ func RegisterUser(context *gin.Context) {
 		return
 	}
 	request.Success(context, ans)
+}
+
+func Login(context *gin.Context) {
+	data := new(model.MdNicePlusUser)
+	if err := request.CheckParams(context, data); err != nil {
+		request.Failed(context, request.CheckParamsErrorCode, err)
+		return
+	}
+	user := curd.QueryUser(data.Username, data.Password)
+	if user == nil {
+		request.Failed(context, PasswordErrorCode, PasswordError)
+		return
+	}
+	if user.Type != 0 {
+		// user is forbidden
+		request.Failed(context, ForbiddenErrorCode, ForbiddenError)
+		return
+	}
+	user.LastLoginAt = jtime.Now()
+	token, err := jwt.GenerateToken(user)
+	if err != nil {
+		request.Failed(context, GenerateTokenErrorCode, GenerateTokenError)
+		return
+	}
+	user.Password = ""
+	request.Success(context, map[string]interface{}{"token": token, "user": user})
 }
