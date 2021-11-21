@@ -19,9 +19,8 @@ import quanzhanlan from "@/components/MarkdownEditor/quanzhanlan";
 import menglv from "@/components/MarkdownEditor/menglv";
 
 
-export default ({theme}) => {
+export default ({theme, value, setValue}) => {
 
-  const [value, setValue] = useState('');
   const plugins = [gfm(), gemoji(), highlight(), mediumZoom()];
 
   useEffect(() => {

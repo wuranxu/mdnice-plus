@@ -14,4 +14,5 @@ type Model struct {
 var Tables = []interface{}{
 	&MdNicePlusUser{},
 	&MdNicePlusDirectory{},
+	&MdNicePlusArticle{},
 }

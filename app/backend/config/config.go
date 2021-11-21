@@ -47,4 +47,5 @@ func initDatabase() {
 	if err != nil {
 		panic("init database connect failed")
 	}
+	Cursor.LogMode(true)
 }

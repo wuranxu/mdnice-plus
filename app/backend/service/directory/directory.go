@@ -26,6 +26,7 @@ func CreateDirectory(context *gin.Context) {
 // UpdateDirectory create directory
 func UpdateDirectory(context *gin.Context) {
 	data := new(model.MdNicePlusDirectory)
+	data.UserId = request.GetUserId(context)
 	if err := request.CheckParams(context, data); err != nil {
 		request.Failed(context, request.CheckParamsErrorCode, err)
 		return
@@ -36,4 +37,16 @@ func UpdateDirectory(context *gin.Context) {
 		return
 	}
 	request.Success(context, nil)
+}
+
+// ListDirectory list directory tree
+func ListDirectory(context *gin.Context) {
+	data := make([]curd.TreeNode, 0, 0)
+	userId := request.GetUserId(context)
+	errcode, result, err := curd.ListDirectory(userId, data, 0)
+	if err != nil {
+		request.Failed(context, errcode, err)
+		return
+	}
+	request.Success(context, result)
 }

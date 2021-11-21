@@ -13,7 +13,7 @@ const (
 )
 
 var (
-	CheckParamsError = exception.ErrString("get json params error")
+	CheckParamsError = exception.ErrString("params error")
 )
 
 func GetUserId(context *gin.Context) uint {
