@@ -1,3 +1,6 @@
 app/front/node_modules
 
+app/front/dist
+app/front/dist.zip
+
 .idea

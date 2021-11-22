@@ -8,7 +8,6 @@ import (
 	"mdnice-plus/api/v1/user"
 	"mdnice-plus/config"
 	"mdnice-plus/curd"
-	"mdnice-plus/helper/auth"
 )
 
 func main() {
@@ -23,7 +22,7 @@ func main() {
 	//app.Use(cors.Default())
 	user.NewRouter(app).AddRoute()
 	// need auth
-	app.Use(auth.AuthMiddleware())
+	//app.Use(auth.AuthMiddleware())
 	directory.NewRouter(app).AddRoute()
 	article.NewRouter(app).AddRoute()
 	app.GET("/", func(context *gin.Context) {

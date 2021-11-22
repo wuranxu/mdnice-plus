@@ -1,6 +1,7 @@
 import CONFIG from "@/consts/config";
 import {getHeader} from "@/services/index";
-import request from "@/utils/request";
+// import request from "@/utils/request";
+import {request} from "umi";
 
 
 export async function listDirectory() {
