@@ -1,6 +1,6 @@
-import {request} from "umi";
 import CONFIG from "@/consts/config";
 import {getHeader} from "@/services/index";
+import request from "@/utils/request";
 
 
 export async function listDirectory() {
@@ -46,5 +46,14 @@ export async function queryArticle(articleId) {
   return request(`${CONFIG.ServiceUrl}/v1/article/${articleId}`, {
     method: 'GET',
     headers: getHeader(),
+  });
+}
+
+export async function createPic(data) {
+  return request(`${CONFIG.ServiceUrl}/v1/article/picture`, {
+    method: 'PUT',
+    headers: {"token": localStorage.getItem("mdnice-plus-token")},
+    requestType: 'form',
+    data,
   });
 }

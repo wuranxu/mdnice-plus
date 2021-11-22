@@ -17,9 +17,12 @@ import ningyezi from "@/components/MarkdownEditor/ningyezi";
 import lanying from "@/components/MarkdownEditor/lanying";
 import quanzhanlan from "@/components/MarkdownEditor/quanzhanlan";
 import menglv from "@/components/MarkdownEditor/menglv";
+import {createPic} from "@/services/directory";
+import {message, Spin} from "antd";
 
 
 export default ({theme, value, setValue}) => {
+  const [loading, setLoading] = useState(false);
 
   const plugins = [gfm(), gemoji(), highlight(), mediumZoom()];
 
@@ -28,6 +31,16 @@ export default ({theme, value, setValue}) => {
     styleElement.innerText = getThemePath();
 
   }, [theme]);
+
+  const uploadFile = async file => {
+    const res = await createPic(file)
+    if (res.errcode === 0) {
+      message.success("上传图片成功")
+      return res.data;
+    }
+    message.error("上传图片失败")
+    return ""
+  }
 
   const getThemePath = () => {
     if (theme === 0) {
@@ -62,25 +75,30 @@ export default ({theme, value, setValue}) => {
 
   return (
     <>
-      <Editor
-        style={{height: '80vh'}}
-        locale={zhHans}
-        className='nice-plus'
-        value={value}
-        plugins={plugins}  //markdown中用到的插件，如表格、数学公式、流程图
-        onChange={(v) => {
-          setValue(v);
-        }}
-        uploadImages={async (files) => {
-          console.log('files', files);
-          return [
-            {
-              title: files.map((i) => i.name),
-              url: 'http',
-            },
-          ];
-        }}
-      />
+     <Spin spinning={loading} tip="上传图片中...">
+       <Editor
+         style={{height: '80vh'}}
+         locale={zhHans}
+         className='nice-plus'
+         value={value}
+         plugins={plugins}  //markdown中用到的插件，如表格、数学公式、流程图
+         onChange={(v) => {
+           setValue(v);
+         }}
+         uploadImages={async (files) => {
+           setLoading(true)
+           const formData = new FormData();
+           formData.append('image', files[0]);
+           const url = await uploadFile(formData)
+           setLoading(false)
+           return [
+             {
+               url: url,
+             },
+           ];
+         }}
+       />
+     </Spin>
     </>
   );
 };

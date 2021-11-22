@@ -19,4 +19,5 @@ func (r *Router) AddRoute() {
 	v1.GET("/:articleId", article.QueryArticle)
 	v1.POST("/:articleId", article.UpdateArticle)
 	v1.DELETE("/:articleId", article.DeleteArticle)
+	v1.PUT("/picture", article.InsertPicture)
 }

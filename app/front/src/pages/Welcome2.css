@@ -223,7 +223,7 @@
 }
 
 .markdown-body pre code {
-  display: -webkit-box;
+  /*display: -webkit-box;*/
   font-family: Operator Mono, Consolas, Monaco, Menlo, monospace;
   border-radius: 0px;
   font-size: 12px;

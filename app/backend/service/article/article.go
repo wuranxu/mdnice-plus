@@ -1,8 +1,11 @@
 package article
 
 import (
+	"encoding/base64"
 	"github.com/gin-gonic/gin"
+	"io/ioutil"
 	"mdnice-plus/curd"
+	"mdnice-plus/helper/pic"
 	"mdnice-plus/helper/request"
 	"mdnice-plus/model"
 	"strconv"
@@ -13,6 +16,7 @@ const (
 	InsertArticleErrorCode
 	UpdateArticleErrorCode
 	DeleteArticleErrorCode
+	FileUploadErrorCode
 )
 
 func QueryArticle(context *gin.Context) {
@@ -75,4 +79,29 @@ func DeleteArticle(context *gin.Context) {
 		return
 	}
 	request.Success(context, nil)
+}
+
+func InsertPicture(context *gin.Context) {
+	file, err := context.FormFile("image")
+	if err != nil {
+		request.Failed(context, FileUploadErrorCode, err)
+		return
+	}
+	open, err := file.Open()
+	if err != nil {
+		request.Failed(context, FileUploadErrorCode, err)
+		return
+	}
+	data, err := ioutil.ReadAll(open)
+	if err != nil {
+		request.Failed(context, FileUploadErrorCode, err)
+		return
+	}
+	img := base64.StdEncoding.EncodeToString(data)
+	url, err := pic.DefaultGiteeRepo.CreateFile(img)
+	if err != nil {
+		request.Failed(context, FileUploadErrorCode, err)
+		return
+	}
+	request.Success(context, url)
 }

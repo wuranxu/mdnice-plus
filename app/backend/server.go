@@ -16,10 +16,11 @@ func main() {
 	curd.InitTables()
 	app := gin.New()
 	app.Use(cors.New(cors.Config{
-		AllowAllOrigins: true,
+		AllowOrigins:    []string{"*"},
 		AllowMethods:    []string{"OPTION", "GET", "PUT", "POST", "DELETE", "PATCH"},
-		AllowHeaders:    []string{"tus-resumable", "upload-length", "upload-metadata", "cache-control", "x-requested-with", "*"},
+		AllowHeaders:    []string{"*"},
 	}))
+	//app.Use(cors.Default())
 	user.NewRouter(app).AddRoute()
 	// need auth
 	app.Use(auth.AuthMiddleware())
