@@ -77,6 +77,7 @@ export default () => {
       item.setAttribute("data-tool", "mdnice-plus编辑器");
     }
     let html = element.innerHTML;
+    html = `<section id="nice">${html}</section>`;
     html = html.replace(/<mjx-container (class="inline.+?)<\/mjx-container>/g, "<span $1</span>");
     html = html.replace(/\s<span class="inline/g, '&nbsp;<span class="inline');
     html = html.replace(/svg><\/span>\s/g, "svg></span>&nbsp;");
