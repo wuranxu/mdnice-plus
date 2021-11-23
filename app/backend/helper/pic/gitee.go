@@ -47,7 +47,7 @@ func (g *GiteeRepo) CreateFile(img string) (string, error) {
 	if resp.StatusCode() != 201 {
 		return "", fmt.Errorf("create file failed")
 	}
-	url := fmt.Sprintf("https://gitee.com/woodywrx/picture/raw/master/%s", filepath)
+	url := fmt.Sprintf("https://gitee.com/%s/%s/raw/master/%s", g.user, g.repo, filepath)
 	return url, nil
 }
 
