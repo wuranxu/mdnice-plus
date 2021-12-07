@@ -1,4 +1,17 @@
 /*默认样式，最佳实践*/
+.bytemd.bytemd-split {
+  z-index: 30;
+}
+
+.medium-zoom-overlay {
+  background: rgb(3, 3, 3) !important;
+  z-index: 50;
+}
+
+.medium-zoom-image.medium-zoom-image--opened {
+  z-index: 60;
+}
+
 .bytemd {
   height: calc(100vh - 200px);
 }
