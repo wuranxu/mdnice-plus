@@ -64,7 +64,7 @@
     "@bytemd/plugin-mermaid": "^1.10.13",
     "@bytemd/react": "^1.10.13",
     "@umijs/route-utils": "^1.0.36",
-    "antd": "4.14.0",
+    "antd": "4.17.0",
     "bytemd": "^1.10.13",
     "classnames": "^2.2.6",
     "juice": "^8.0.0",
@@ -77,7 +77,7 @@
     "react-dev-inspector": "^1.1.1",
     "react-dom": "^17.0.0",
     "react-helmet-async": "^1.0.4",
-    "umi": "^3.5.20",
+    "umi": "3.5.21",
     "umi-serve": "1.9.10"
   },
   "devDependencies": {
