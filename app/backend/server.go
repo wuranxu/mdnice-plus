@@ -15,9 +15,9 @@ func main() {
 	curd.InitTables()
 	app := gin.New()
 	app.Use(cors.New(cors.Config{
-		AllowOrigins:    []string{"*"},
-		AllowMethods:    []string{"OPTION", "GET", "PUT", "POST", "DELETE", "PATCH"},
-		AllowHeaders:    []string{"*"},
+		AllowOrigins: []string{"*"},
+		AllowMethods: []string{"OPTION", "GET", "PUT", "POST", "DELETE", "PATCH"},
+		AllowHeaders: []string{"*"},
 	}))
 	//app.Use(cors.Default())
 	user.NewRouter(app).AddRoute()
